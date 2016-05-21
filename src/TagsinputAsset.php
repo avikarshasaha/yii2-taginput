@@ -20,6 +20,6 @@ class TagsinputAsset extends \yii\web\AssetBundle
     public $depends = [
         'yii\web\JqueryAsset',
         'yii\bootstrap\BootstrapPluginAsset',
-        'wbraganca\tagsinput\TypeaheadAsset'
+        'avikarsha\tagsinput\TypeaheadAsset'
     ];
 }
