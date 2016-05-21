@@ -1,0 +1,34 @@
+{
+    "name": "avikarsha/yii2-tagsinput",
+    "description": "The yii2-tagsinput is a Yii 2 wrapper for [bootstrap-tagsinput](https://github.com/timschlechter/bootstrap-tagsinput) with [typeahead.js](https://twitter.github.io/typeahead.js/)",
+    "type": "yii2-extension",
+    "keywords": [
+        "avikarsha",
+        "yii2",
+        "extension",
+        "yii2-tagsinput",
+        "yii2 tags input typeahead bloodhood"
+    ],
+    "homepage": "https://github.com/avikarsha/yii2-tagsinput",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Avikarsha Saha",
+            "email": "avikarsha.saha@gmail.com",
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "bower-asset/typeahead.js": "0.10.* | ~0.11.0",
+        "bower-asset/bootstrap-tagsinput": "~0.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "avikarsha\\tagsinput\\": "src"
+        }
+    }
+}
