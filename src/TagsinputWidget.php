@@ -1,12 +1,12 @@
 <?php
 namespace avikarsha\tagsinput;
 
+use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\web\View;
 use yii\web\JsExpression;
-use yii\helpers\ArrayHelper;
-use yii\base\InvalidConfigException;
+use yii\web\View;
 
 /**
  * The yii2-tagsinput is a Yii 2 wrapper for bootstrap-tagsinput with typeahead.
@@ -43,16 +43,16 @@ class TagsinputWidget extends \yii\widgets\InputWidget
 
     /**
      * @var array dataset an object that defines a set of data that hydrates suggestions.
-     * For TypeaheadBasic, this is a single dimensional array consisting of following settings. 
-     * For Typeahead, this is a multi-dimensional array, with each array item being an array that 
+     * For TypeaheadBasic, this is a single dimensional array consisting of following settings.
+     * For Typeahead, this is a multi-dimensional array, with each array item being an array that
      * consists of the following settings.
-     * - source: The backing data source for suggestions. Expected to be a function with the 
+     * - source: The backing data source for suggestions. Expected to be a function with the
      *   signature `(query, syncResults, asyncResults)`. This can also be a Bloodhound instance.
      *   If not set, this will be automatically generated based on the bloodhound specific
      *   properties in the next section below.
      * - display: string the key used to access the value of the datum in the datum
      *   object. Defaults to 'value'.
-     * - async: boolean, lets the dataset know if async suggestions should be expected. Defaults to `true`.     
+     * - async: boolean, lets the dataset know if async suggestions should be expected. Defaults to `true`.
      * - limit: integer the max number of suggestions from the dataset to display for
      *   a given query. Defaults to 5.
      * - templates: array the templates used to render suggestions.
@@ -76,7 +76,6 @@ class TagsinputWidget extends \yii\widgets\InputWidget
      */
     protected $_bloodhound;
 
-
     /**
      * @var string the generated HashPluginOptions script
      */
@@ -91,7 +90,7 @@ class TagsinputWidget extends \yii\widgets\InputWidget
      * @var bool whether default suggestions are enabled
      */
     protected $_defaultSuggest = false;
-    
+
     /**
      * @var array the bloodhound settings variables
      */
@@ -104,7 +103,7 @@ class TagsinputWidget extends \yii\widgets\InputWidget
         'identify',
         'local',
         'prefetch',
-        'remote'
+        'remote',
     ];
 
     /**
@@ -112,8 +111,7 @@ class TagsinputWidget extends \yii\widgets\InputWidget
      */
     public function run()
     {
-        
-        if(isset($this->dataset)) {
+        if (isset($this->dataset) && !empty($this->dataset)) {
             if (empty($this->dataset) || !is_array($this->dataset)) {
                 throw new InvalidConfigException("You must define the 'dataset' property for Typeahead which must be an array.");
             }
@@ -156,12 +154,12 @@ class TagsinputWidget extends \yii\widgets\InputWidget
      */
     protected function hashPluginOptions($view)
     {
-        if(isset($this->typeaheadOptions)){
-            $this->clientOptions['typeaheadjs'][] =  $this->typeaheadOptions;
+        if (isset($this->typeaheadOptions) && !empty($this->typeaheadOptions)) {
+            $this->clientOptions['typeaheadjs'][] = $this->typeaheadOptions;
         }
 
-        if(isset($this->_dataset)){
-            $this->clientOptions['typeaheadjs'][] =  $this->_dataset;
+        if (isset($this->_dataset) && !empty($this->_dataset)) {
+            $this->clientOptions['typeaheadjs'][] = $this->_dataset;
         }
 
         $encOptions = empty($this->clientOptions) ? '{}' : Json::encode($this->clientOptions);
@@ -211,7 +209,7 @@ class TagsinputWidget extends \yii\widgets\InputWidget
     {
         return ($expr instanceof JsExpression) ? $expr : new JsExpression($expr);
     }
-    
+
     /**
      * Parses the data source array and prepares the bloodhound configuration
      *
